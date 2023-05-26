@@ -28,15 +28,15 @@ public class UserService {
         user.setPassword(
                 new BCryptPasswordEncoder().encode(password)
         );
-        User inTableUser = usersRepo.findByUsername(user.getUsername());
-        if(inTableUser == null) {
+        Optional<User> inTableUser = usersRepo.findByUsername(user.getUsername());
+        if(!inTableUser.isPresent()) {
             return ResponseEntity.ok(usersRepo.save(user));
         }
         return new ResponseEntity<String>(user.getUsername() + " already exists.", HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<?> isValidUser(String username, String password) {
-        Optional<User> user = Optional.ofNullable(usersRepo.findByUsername(username));
+        Optional<User> user = usersRepo.findByUsername(username);
         if(user.isPresent() && Objects.equals(user.get().getUsername(), password)){
             return ResponseEntity.ok(user);
         }
