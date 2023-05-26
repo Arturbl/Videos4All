@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  Videos4All:
+    build:
+      dockerfile: Dockerfile
+      context: database
+    image: videos4all
+    container_name: Videos4All
+    restart: always
+    ports:
+      - "5432:5432"

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: Videos4All
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Videos4All
+    username: admin
+    password: admin
