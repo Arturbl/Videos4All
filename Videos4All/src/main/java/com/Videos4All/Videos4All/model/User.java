@@ -1,8 +1,9 @@
 package com.Videos4All.Videos4All.model;
 
 
-import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
