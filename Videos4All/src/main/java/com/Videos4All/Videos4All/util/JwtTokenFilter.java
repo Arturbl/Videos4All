@@ -22,22 +22,16 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     private JwtTokenUtil jwtUtil;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
-
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         if (!hasAuthorizationBearer(request)) {
             filterChain.doFilter(request, response);
             return;
         }
-
         String token = getAccessToken(request);
-
         if (!jwtUtil.validateAccessToken(token)) {
             filterChain.doFilter(request, response);
             return;
         }
-
         setAuthenticationContext(token, request);
         filterChain.doFilter(request, response);
     }
@@ -47,7 +41,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         if (ObjectUtils.isEmpty(header) || !header.startsWith("Bearer")) {
             return false;
         }
-
         return true;
     }
 
@@ -72,10 +65,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     private UserDetails getUserDetails(String token) {
         User userDetails = new User();
         String[] jwtSubject = jwtUtil.getSubject(token).split(",");
-        System.out.println("JWT SUBJECT: Size: " + jwtSubject.length);
-        for(String sub : jwtSubject) {
-            System.out.println(sub);
-        }
         userDetails.setId(jwtSubject[0]);
         userDetails.setUsername(jwtSubject[1]);
         return userDetails;
