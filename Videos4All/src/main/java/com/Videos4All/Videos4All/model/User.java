@@ -1,14 +1,12 @@
 package com.Videos4All.Videos4All.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Users {
+@Table(name = "users")
+public class User {
 
     @Id
     @Column
@@ -22,7 +20,7 @@ public class Users {
     @Column(nullable = false)
     private String password;
 
-    public Users() {}
+    public User() {}
 
     public String getId() {
         return id;

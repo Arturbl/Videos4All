@@ -1,6 +1,6 @@
 package com.Videos4All.Videos4All.controller;
 
-import com.Videos4All.Videos4All.model.Users;
+import com.Videos4All.Videos4All.model.User;
 import com.Videos4All.Videos4All.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping(value = "/findAll")
-    public List<Users> findAll() {
+    public List<User> findAll() {
         return userService.findAll();
     }
 

@@ -1,6 +1,6 @@
 package com.Videos4All.Videos4All.service;
 
-import com.Videos4All.Videos4All.model.Users;
+import com.Videos4All.Videos4All.model.User;
 import com.Videos4All.Videos4All.repo.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,15 +17,15 @@ public class UserService {
     @Autowired
     UsersRepo usersRepo;
 
-    public List<Users> findAll() {
+    public List<User> findAll() {
         return usersRepo.findAll();
     }
 
     public ResponseEntity<?> addUser(String username, String password) {
-        Users user = new Users();
+        User user = new User();
         user.setUsername(username);
         user.setPassword(password);
-        Users inTableUser = usersRepo.findByUsername(user.getUsername());
+        User inTableUser = usersRepo.findByUsername(user.getUsername());
         if(inTableUser == null) {
             return ResponseEntity.ok(usersRepo.save(user));
         }
@@ -33,7 +33,7 @@ public class UserService {
     }
 
     public ResponseEntity<?> isValidUser(String username, String password) {
-        Optional<Users> user = Optional.ofNullable(usersRepo.findByUsername(username));
+        Optional<User> user = Optional.ofNullable(usersRepo.findByUsername(username));
         if(user.isPresent() && Objects.equals(user.get().getUsername(), password)){
             return ResponseEntity.ok(user);
         }
