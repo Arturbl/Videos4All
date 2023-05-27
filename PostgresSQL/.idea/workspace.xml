@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3d2fc5f-d109-4131-833a-be7327e7d345" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/controller/VideoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/POJO/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/pojo/AuthRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/POJO/AuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/pojo/AuthResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/POJO/VideoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/pojo/VideoResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/POJO/VideoUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/pojo/VideoUpload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/model/Video.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/service/VideoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/util/JwtTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/util/JwtTokenFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/util/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/util/JwtTokenUtil.java" afterDir="false" />
-    </list>
+    <list default="true" id="b3d2fc5f-d109-4131-833a-be7327e7d345" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
