@@ -54,12 +54,4 @@ public class AuthController {
         }
     }
 
-    @PostMapping(value = "/auth/logout")
-    public ResponseEntity<?> logout(HttpServletRequest request) {
-        String jwtToken = Optional.ofNullable(request.getHeader("Authorization"))
-                .orElse(request.getHeader("authorization"));
-        User user = jwtUtil.getUserDetails(jwtToken);
-        return userService.logout(user);
-    }
-
 }

@@ -48,17 +48,8 @@ public class UserService {
         return new ResponseEntity<String>("Invalid Data.", HttpStatus.NOT_FOUND);
     }
 
-
     public static void main(String[] args) {
         System.out.println(new BCryptPasswordEncoder().encode(UUID.randomUUID().toString()));
     }
 
-    public ResponseEntity<?> logout(User user) {
-        usersRepo.findById(user.getId())
-                .ifPresent(v -> {
-                    v.setAccessToken(new BCryptPasswordEncoder().encode(UUID.randomUUID().toString()));
-                    usersRepo.save(v);
-                });
-        return ResponseEntity.ok("User logged out.");
-    }
 }

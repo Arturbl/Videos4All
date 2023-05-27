@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3d2fc5f-d109-4131-833a-be7327e7d345" name="Changes" comment="" />
+    <list default="true" id="b3d2fc5f-d109-4131-833a-be7327e7d345" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/repo/UsersRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/repo/UsersRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/repo/VideoRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/repo/VideoRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/service/UserService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
