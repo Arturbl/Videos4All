@@ -1,8 +1,9 @@
 package com.Videos4All.Videos4All.controller;
 
-import com.Videos4All.Videos4All.model.POJO.AuthRequest;
-import com.Videos4All.Videos4All.model.POJO.AuthResponse;
+import com.Videos4All.Videos4All.model.pojo.AuthRequest;
+import com.Videos4All.Videos4All.model.pojo.AuthResponse;
 import com.Videos4All.Videos4All.model.User;
+import com.Videos4All.Videos4All.service.UserService;
 import com.Videos4All.Videos4All.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,17 +12,27 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
+
 @RestController
 public class AuthController {
 
+    private final AuthenticationManager authManager;
+    private final JwtTokenUtil jwtUtil;
+    private final UserService userService;
+
     @Autowired
-    AuthenticationManager authManager;
-    @Autowired
-    JwtTokenUtil jwtUtil;
+    public AuthController(AuthenticationManager authManager, JwtTokenUtil jwtUtil, UserService userService) {
+        this.authManager = authManager;
+        this.jwtUtil = jwtUtil;
+        this.userService = userService;
+    }
 
     @PostMapping(value = "/auth/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest request) {
@@ -41,6 +52,18 @@ public class AuthController {
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
+
+    @PostMapping(value = "/auth/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        String jwtToken = Optional.ofNullable(request.getHeader("Authorization"))
+                .orElse(request.getHeader("authorization"));
+        User user = jwtUtil.getUserDetails(jwtToken);
+        return userService.logout(user);
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }

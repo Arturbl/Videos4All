@@ -26,7 +26,7 @@ public class VideoService {
         return videoRepo.findByName(name);
     }
 
-    public void upload(MultipartFile file) throws IOException {
+    public Video upload(MultipartFile file) throws IOException {
         Video video = new Video();
         video.setName(
                 StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()))
@@ -35,6 +35,7 @@ public class VideoService {
         video.setSize(file.getSize());
         video.setData(file.getBytes());
         videoRepo.save(video);
+        return video;
     }
 
 }

@@ -24,6 +24,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Column(name = "access_token")
+    private String accessToken;
+
     public User() {}
 
     public String getId() {
@@ -46,6 +49,15 @@ public class User implements UserDetails {
     @Override
     public boolean isAccountNonLocked() {
         return true;
+    }
+
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     @Override

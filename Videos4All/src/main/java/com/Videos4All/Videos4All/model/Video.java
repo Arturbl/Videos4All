@@ -1,6 +1,7 @@
 package com.Videos4All.Videos4All.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.persistence.*;
 
@@ -27,6 +28,13 @@ public class Video {
     private byte[] data;
 
     public Video() {}
+
+    public String getUrl() {
+        return ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/files/")
+                .path(getId())
+                .toUriString();
+    }
 
     public String getId() {
         return id;

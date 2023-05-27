@@ -11,3 +11,6 @@ CREATE TABLE videos (
     size BIGSERIAL NOT NULL,
     data bytea NOT NULL
 );
+
+alter table users
+    add access_token varchar(100);

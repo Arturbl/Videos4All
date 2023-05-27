@@ -1,6 +1,7 @@
 package com.Videos4All.Videos4All.controller;
 
-import com.Videos4All.Videos4All.model.POJO.VideoResponse;
+import com.Videos4All.Videos4All.model.VideoMapper;
+import com.Videos4All.Videos4All.model.pojo.VideoResponse;
 import com.Videos4All.Videos4All.model.Video;
 import com.Videos4All.Videos4All.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,35 +13,43 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.swing.text.html.Option;
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping(produces = {"application/json"})
 public class VideoController {
 
+    private final VideoService videoService;
+    private final VideoMapper videoMapper;
+
     @Autowired
-    private VideoService videoService;
+    public VideoController(VideoService videoService, VideoMapper videoMapper) {
+        this.videoService = videoService;
+        this.videoMapper = videoMapper;
+    }
 
     @PostMapping(value = "/video/upload")
-    public ResponseEntity<?> uploadVideo(@RequestParam("file") MultipartFile file) {
-        try {
-            videoService.upload(file);
-            return ResponseEntity.ok(file);
-        } catch (Exception e) {
-            System.out.println(e);
-            return new ResponseEntity<String>("something went wrong", HttpStatus.UNAUTHORIZED);
+    public ResponseEntity<?> uploadVideo(@RequestParam("file") MultipartFile file, @RequestParam("username") String username) throws IOException {
+        if(Objects.equals(username, "admin")) {
+            Video upload = videoService.upload(file);
+            return ResponseEntity.ok(videoMapper.parse(upload));
         }
+        return new ResponseEntity<String>("You dont have enough permissions.", HttpStatus.UNAUTHORIZED);
     }
 
     @GetMapping(value = "/video/findAll")
     public List<VideoResponse> getVideos() {
         return videoService.getVideos()
                 .stream()
-                .map(this::mapToFileResponse)
+                .map(this.videoMapper::parse)
                 .collect(Collectors.toList());
     }
+
+
 
     @GetMapping(value = "/video/find/{name}")
     public ResponseEntity<?> getVideo(@PathVariable String name) {
@@ -53,20 +62,6 @@ public class VideoController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + video.getName() + "\"")
                 .contentType(MediaType.valueOf(video.getContentType()))
                 .body(video.getData());
-    }
-
-    private VideoResponse mapToFileResponse(Video video) {
-        String downloadURL = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/files/")
-                .path(video.getId())
-                .toUriString();
-        VideoResponse videoResponse = new VideoResponse();
-        videoResponse.setId(video.getId());
-        videoResponse.setName(video.getName());
-        videoResponse.setContentType(video.getContentType());
-        videoResponse.setSize(video.getSize());
-        videoResponse.setUrl(downloadURL);
-        return videoResponse;
     }
 
 }
