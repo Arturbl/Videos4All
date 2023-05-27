@@ -10,7 +10,6 @@ This documentation provides an overview of the endpoints available in the applic
 - Endpoint: `/auth/login`
 - Description: Authenticate a user and generate an access token.
 
-
 ## UserController
 
 ### Find All Users
@@ -50,3 +49,15 @@ This documentation provides an overview of the endpoints available in the applic
 - Method: GET
 - Endpoint: `/video/find/{name}`
 - Description: Find a video by its name.
+
+### How to run database
+
+
+1. Open a terminal or command prompt.
+2. Navigate to the root directory of the project.
+3. Run the following command to build the database container:
+    - docker-compose build --no-cache
+4. Run the following command to start the database container:
+    - docker-compose up -d
+
+
