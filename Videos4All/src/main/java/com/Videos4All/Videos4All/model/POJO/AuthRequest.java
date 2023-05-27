@@ -1,4 +1,4 @@
-package com.Videos4All.Videos4All.model;
+package com.Videos4All.Videos4All.model.POJO;
 
 import org.hibernate.validator.constraints.Length;
 

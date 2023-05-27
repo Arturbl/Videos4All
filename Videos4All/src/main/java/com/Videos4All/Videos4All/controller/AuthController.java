@@ -1,7 +1,7 @@
 package com.Videos4All.Videos4All.controller;
 
-import com.Videos4All.Videos4All.model.AuthRequest;
-import com.Videos4All.Videos4All.model.AuthResponse;
+import com.Videos4All.Videos4All.model.POJO.AuthRequest;
+import com.Videos4All.Videos4All.model.POJO.AuthResponse;
 import com.Videos4All.Videos4All.model.User;
 import com.Videos4All.Videos4All.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
 
 @RestController
 public class AuthController {

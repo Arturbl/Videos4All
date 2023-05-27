@@ -9,6 +9,13 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
 app:
   jwt:
     secret: secret

@@ -30,10 +30,10 @@ public class AppSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(
-                username -> usersRepo.findByUsername(username)
-                .orElseThrow(() ->
-                    new UsernameNotFoundException("User " + username + " not found.")
-                )
+            username -> usersRepo.findByUsername(username)
+            .orElseThrow(() ->
+                new UsernameNotFoundException("User " + username + " not found.")
+            )
         );
     }
 
@@ -50,18 +50,17 @@ public class AppSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
-                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/auth/login", "/addUser/{username}/{password}").permitAll()
                 .anyRequest().authenticated();
         http.exceptionHandling()
-                .authenticationEntryPoint(
-                        (request, response, ex) -> {
-                            response.sendError(
-                                    HttpServletResponse.SC_UNAUTHORIZED,
-                                    ex.getMessage()
-                            );
-                        }
-                );
-
+            .authenticationEntryPoint(
+                (request, response, ex) -> {
+                    response.sendError(
+                        HttpServletResponse.SC_UNAUTHORIZED,
+                        ex.getMessage()
+                    );
+                }
+            );
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
