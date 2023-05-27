@@ -15,8 +15,11 @@ import java.util.Optional;
 @Service
 public class VideoService {
 
-    @Autowired
-    private VideoRepo videoRepo;
+    private final VideoRepo videoRepo;
+
+    public VideoService(VideoRepo videoRepo) {
+        this.videoRepo = videoRepo;
+    }
 
     public List<Video> getVideos() {
         return videoRepo.findAll();

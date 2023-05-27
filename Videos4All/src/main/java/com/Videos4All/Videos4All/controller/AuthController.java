@@ -62,8 +62,4 @@ public class AuthController {
         return userService.logout(user);
     }
 
-    public static void main(String[] args) {
-
-    }
-
 }

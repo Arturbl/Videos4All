@@ -21,11 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 @EnableWebSecurity
 public class AppSecurity extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UsersRepo usersRepo;
+    private final UsersRepo usersRepo;
+    private final JwtTokenFilter jwtTokenFilter;
 
-    @Autowired
-    private JwtTokenFilter jwtTokenFilter;
+    public AppSecurity(UsersRepo usersRepo, JwtTokenFilter jwtTokenFilter) {
+        this.usersRepo = usersRepo;
+        this.jwtTokenFilter = jwtTokenFilter;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
