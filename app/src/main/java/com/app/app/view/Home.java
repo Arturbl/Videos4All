@@ -107,7 +107,7 @@ public class Home extends VBox {
     private void changeTitleText(String newText) {
         String originalText = titleText.getText();
         titleText.setText(newText);
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             titleText.setText(originalText);
         }));
         timeline.play();

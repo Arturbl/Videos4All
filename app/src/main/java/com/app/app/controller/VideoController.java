@@ -42,7 +42,7 @@ public class VideoController {
                         outputStream.write(buffer, 0, bytesRead);
                     }
                 }
-                return "File at: " + filePath;
+                return "Downloading " + filename;
             } else {
                 System.out.println("Error: " + response.getStatusLine().getStatusCode());
             }
