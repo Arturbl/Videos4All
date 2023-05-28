@@ -93,7 +93,6 @@ public class Home extends VBox {
             mainContainer.getChildren().addAll(titleText, listView, buttonContainer);
         }
 
-
         getChildren().add(mainContainer);
 
         downloadButton.setOnAction(e -> {

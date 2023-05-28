@@ -35,7 +35,7 @@ public class VideoController {
     @PostMapping(value = "/video/upload")
     public ResponseEntity<?> uploadVideo(@RequestParam("file") MultipartFile file, @RequestParam("username") String username) throws IOException {
         if(Objects.equals(username, "admin")) {
-            Video upload = videoService.upload(file);
+            Video upload = videoService.upl oad(file);
             return ResponseEntity.ok(videoMapper.parse(upload));
         }
         return new ResponseEntity<String>("You dont have enough permissions.", HttpStatus.UNAUTHORIZED);

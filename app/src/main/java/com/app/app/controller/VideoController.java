@@ -2,10 +2,20 @@ package com.app.app.controller;
 
 import com.app.app.model.VideoResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.HttpHeaders;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.content.ContentBody;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
+
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -17,9 +27,36 @@ public class VideoController {
     private static final WindowController windowController = WindowController.getInstance();
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static void uploadVideo(File file) {
-        // TODO: implement request to save video into database
-        System.out.println(file.getName());
+    public static String uploadVideo(File file)  {
+        String endpoint = "http://localhost:8080/video/upload";
+        String accessToken = windowController.getUser().getAccessToken();
+
+        try {
+            CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+            HttpPost httpPost = new HttpPost(endpoint);
+            MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
+            entityBuilder.addPart("file", new FileBody(file));
+            entityBuilder.addPart("username", new StringBody(
+                    windowController.getUser().getUsername(),
+                    ContentType.TEXT_PLAIN)
+            );
+            String authorizationHeader = "Bearer " + accessToken;
+            httpPost.setHeader(HttpHeaders.AUTHORIZATION, authorizationHeader);
+            httpPost.setEntity(entityBuilder.build());
+            HttpResponse response = httpClient.execute(httpPost);
+            int statusCode = response.getStatusLine().getStatusCode();
+            String responseBody = EntityUtils.toString(response.getEntity());
+            if (statusCode == 200) {
+                System.out.println("Upload successful. Response: " + responseBody);
+            } else {
+                System.out.println("Upload failed. Status code: " + statusCode);
+            }
+            httpClient.close();
+            return "Uploading " + file.getName();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return "File not found";
     }
 
     public static String downloadVideo(String videoName) {
@@ -79,13 +116,13 @@ public class VideoController {
                 response.append(line);
             }
             reader.close();
-            return mapResponse(response.toString());
+            return responseMapper(response.toString());
         } else {
             throw new IOException("GET request failed with response code: " + responseCode);
         }
     }
 
-    private static List<VideoResponse> mapResponse(String response) {
+    private static List<VideoResponse> responseMapper(String response) {
         try {
             VideoResponse[] videoResponses = objectMapper.readValue(response, VideoResponse[].class);
             if (videoResponses.length > 0) {

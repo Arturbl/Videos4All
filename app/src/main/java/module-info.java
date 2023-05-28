@@ -8,6 +8,8 @@ module com.app.app {
     requires org.apache.httpcomponents.httpclient;
     requires org.apache.httpcomponents.httpcore;
 
+    requires org.apache.httpcomponents.httpmime;
+
     opens com.app.app.model to com.fasterxml.jackson.databind;
 
     exports com.app.app;
