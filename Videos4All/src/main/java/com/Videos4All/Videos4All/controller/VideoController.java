@@ -57,12 +57,11 @@ public class VideoController {
         if (!videoOpt.isPresent()) {
             return new ResponseEntity<String>("Video " + name + " not found", HttpStatus.NOT_FOUND);
         }
-        VideoResponse videoResponse = videoOpt
-                .map(this.videoMapper::parse)
-                .get();
-        return ResponseEntity.ok(
-                Arrays.asList(videoResponse) // the only reason we convert to list is to resuse the same method in client
-        );
+        Video video = videoOpt.get();
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + video.getName() + "\"")
+                .contentType(MediaType.valueOf(video.getContentType()))
+                .body(video.getData());
     }
 
 }

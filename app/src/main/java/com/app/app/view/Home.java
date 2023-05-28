@@ -16,6 +16,10 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 import java.io.File;
 import java.util.List;
 import java.util.Objects;
@@ -29,13 +33,14 @@ public class Home extends VBox {
     private final Button saveToDbButton;
     private File selectedFile;
     private final ListView<VideoResponse> listView = new ListView<>();
+    private final Text titleText;
+
 
     public Home() {
 
         System.out.println("User: " + windowController.getUser().getUsername() + "Access token: " + windowController.getUser().getAccessToken());
 
-        // Create the text
-        Text titleText = new Text("Welcome " + windowController.getUser().getUsername() + "!");
+        titleText = new Text("Welcome " + windowController.getUser().getUsername() + "!");
         titleText.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
 
         // Create the text field
@@ -89,9 +94,22 @@ public class Home extends VBox {
 
         getChildren().add(mainContainer);
 
-        downloadButton.setOnAction(e -> VideoController.downloadVideo(textField.getText()));
+        downloadButton.setOnAction(e -> {
+            String response = VideoController.downloadVideo(textField.getText());
+            changeTitleText(response);
+        });
         saveToDbButton.setOnAction(e -> VideoController.uploadVideo(selectedFile));
 
     }
+
+    public void changeTitleText(String newText) {
+        String originalText = titleText.getText();
+        titleText.setText(newText);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+            titleText.setText(originalText);
+        }));
+        timeline.play();
+    }
+
 }
 

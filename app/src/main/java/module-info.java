@@ -5,6 +5,8 @@ module com.app.app {
     requires org.kordamp.bootstrapfx.core;
     requires com.google.gson;
     requires com.fasterxml.jackson.databind;
+    requires org.apache.httpcomponents.httpclient;
+    requires org.apache.httpcomponents.httpcore;
 
     opens com.app.app.model to com.fasterxml.jackson.databind;
 
