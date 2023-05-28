@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -56,11 +57,12 @@ public class VideoController {
         if (!videoOpt.isPresent()) {
             return new ResponseEntity<String>("Video " + name + " not found", HttpStatus.NOT_FOUND);
         }
-        Video video = videoOpt.get();
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + video.getName() + "\"")
-                .contentType(MediaType.valueOf(video.getContentType()))
-                .body(video.getData());
+        VideoResponse videoResponse = videoOpt
+                .map(this.videoMapper::parse)
+                .get();
+        return ResponseEntity.ok(
+                Arrays.asList(videoResponse) // the only reason we convert to list is to resuse the same method in client
+        );
     }
 
 }
