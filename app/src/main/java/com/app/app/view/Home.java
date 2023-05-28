@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -85,6 +86,7 @@ public class Home extends VBox {
         if(Objects.equals(windowController.getUser().getUsername(), "admin")) {
             mainContainer.getChildren().addAll(titleText, uploadContainer);
         } else {
+            listView.setOnMouseClicked(this::handleListViewRowClick);
             List<VideoResponse> videos = VideoController.listVideos();
             ObservableList<VideoResponse> observableVideos = FXCollections.observableArrayList(videos);
             listView.setItems(observableVideos);
@@ -102,13 +104,20 @@ public class Home extends VBox {
 
     }
 
-    public void changeTitleText(String newText) {
+    private void changeTitleText(String newText) {
         String originalText = titleText.getText();
         titleText.setText(newText);
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
             titleText.setText(originalText);
         }));
         timeline.play();
+    }
+
+    private void handleListViewRowClick(MouseEvent event) {
+        ListView<VideoResponse> listView = (ListView<VideoResponse>) event.getSource();
+        VideoResponse selectedItem = listView.getSelectionModel().getSelectedItem();
+        String videoName = selectedItem.getName();
+        textField.setText(videoName);
     }
 
 }
