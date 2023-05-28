@@ -54,7 +54,7 @@ This documentation provides an overview of the endpoints available in the applic
 
 
 1. Open a terminal or command prompt.
-2. Navigate to the root directory of the project.
+2. Navigate to the root directory of the project. [/PostgresSQL]
 3. Run the following command to build the database container:
     - docker-compose build --no-cache
 4. Run the following command to start the database container:

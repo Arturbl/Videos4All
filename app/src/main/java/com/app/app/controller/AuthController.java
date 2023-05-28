@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 
 
-public class Api {
+public class AuthController {
 
     public static User register(String username, String password) throws IOException {
         String url = "http://localhost:8080/addUser/" + username + "/" + password;

@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 public class WindowController {
 
     private static WindowController INSTANCE;
-    private Stage primaryStage;
-    private User user;
+    private static Stage primaryStage;
+    private static User user;
 
 
     private WindowController() {}
@@ -22,11 +22,19 @@ public class WindowController {
     }
 
     public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
+        WindowController.primaryStage = primaryStage;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        WindowController.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     public static  WindowController getInstance() {

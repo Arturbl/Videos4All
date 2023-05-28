@@ -1,5 +1,6 @@
 package com.app.app;
 
+import com.app.app.controller.WindowController;
 import com.app.app.view.Login;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,14 +15,16 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage primaryStage) throws IOException {
 
-        Login login = new Login();
+        WindowController windowController = WindowController.getInstance();
+        windowController.setPrimaryStage(primaryStage);
 
-        Scene scene = new Scene(login, 320, 240);
-        stage.setTitle("Videos4All");
-        stage.setScene(scene);
-        stage.show();
+        windowController.updateScene(
+                new Login()
+        );
+
+        primaryStage.setTitle("Videos4All");
     }
 
 
