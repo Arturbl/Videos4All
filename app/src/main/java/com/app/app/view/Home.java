@@ -2,14 +2,13 @@ package com.app.app.view;
 
 import com.app.app.controller.VideoController;
 import com.app.app.controller.WindowController;
+import com.app.app.model.User;
 import com.app.app.model.VideoResponse;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -40,6 +39,13 @@ public class Home extends VBox {
     public Home() {
 
         System.out.println("User: " + windowController.getUser().getUsername() + "Access token: " + windowController.getUser().getAccessToken());
+
+        MenuBar menuBar = new MenuBar();
+        Menu fileMenu = new Menu("file");
+        MenuItem signOutMenuItem = new MenuItem("Sign Out");
+        signOutMenuItem.setOnAction(e -> logout());
+        fileMenu.getItems().add(signOutMenuItem);
+        menuBar.getMenus().add(fileMenu);
 
         titleText = new Text("Welcome " + windowController.getUser().getUsername() + "!");
         titleText.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
@@ -80,17 +86,14 @@ public class Home extends VBox {
         // Create the main container
         VBox mainContainer = new VBox(20);
         mainContainer.setAlignment(Pos.CENTER);
-        mainContainer.setPadding(new Insets(40));
 
+        loadCurrentVideos();
 
         if(Objects.equals(windowController.getUser().getUsername(), "admin")) {
-            mainContainer.getChildren().addAll(titleText, uploadContainer);
+            mainContainer.getChildren().addAll(menuBar, titleText, listView, uploadContainer);
         } else {
             listView.setOnMouseClicked(this::handleListViewRowClick);
-            List<VideoResponse> videos = VideoController.listVideos();
-            ObservableList<VideoResponse> observableVideos = FXCollections.observableArrayList(videos);
-            listView.setItems(observableVideos);
-            mainContainer.getChildren().addAll(titleText, listView, buttonContainer);
+            mainContainer.getChildren().addAll(menuBar, titleText, listView, buttonContainer);
         }
 
         getChildren().add(mainContainer);
@@ -99,7 +102,11 @@ public class Home extends VBox {
             String response = VideoController.downloadVideo(textField.getText());
             changeTitleText(response);
         });
-        saveToDbButton.setOnAction(e -> VideoController.uploadVideo(selectedFile));
+        saveToDbButton.setOnAction(e -> {
+            String response = VideoController.uploadVideo(selectedFile);
+            changeTitleText(response);
+            loadCurrentVideos();
+        });
 
     }
 
@@ -117,6 +124,20 @@ public class Home extends VBox {
         VideoResponse selectedItem = listView.getSelectionModel().getSelectedItem();
         String videoName = selectedItem.getName();
         textField.setText(videoName);
+    }
+
+    private void loadCurrentVideos() {
+        List<VideoResponse> videos = VideoController.listVideos();
+        ObservableList<VideoResponse> observableVideos = FXCollections.observableArrayList(videos);
+        listView.setItems(observableVideos);
+    }
+
+    private void logout() {
+        WindowController windowController = WindowController.getInstance();
+        windowController.setUser(null);
+        windowController.updateScene(
+                new Login()
+        );
     }
 
 }
