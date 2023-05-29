@@ -42,7 +42,6 @@ public class AuthController {
         outputStream.write(requestBody.getBytes());
         outputStream.flush();
         outputStream.close();
-        int responseCode = connection.getResponseCode();
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String line;
         StringBuilder response = new StringBuilder();

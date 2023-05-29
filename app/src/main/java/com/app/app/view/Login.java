@@ -67,9 +67,9 @@ public class Login extends VBox {
         if(!username.isEmpty() && !password.isEmpty()) {
             try {
                 User user = AuthController.login(username, password);
+                System.out.println("User from login: " + user.getUsername());
                 WindowController windowController = WindowController.getInstance();
                 windowController.setUser(user);
-                System.out.println(windowController.getPrimaryStage().toString());
                 windowController.updateScene(
                         new Home()
                 );

@@ -2,8 +2,9 @@ package com.app.app.view;
 
 import com.app.app.controller.VideoController;
 import com.app.app.controller.WindowController;
-import com.app.app.model.User;
 import com.app.app.model.VideoResponse;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -15,9 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -128,8 +126,10 @@ public class Home extends VBox {
 
     private void loadCurrentVideos() {
         List<VideoResponse> videos = VideoController.listVideos();
-        ObservableList<VideoResponse> observableVideos = FXCollections.observableArrayList(videos);
-        listView.setItems(observableVideos);
+        if (videos != null) {
+            ObservableList<VideoResponse> observableVideos = FXCollections.observableArrayList(videos);
+            listView.setItems(observableVideos);
+        }
     }
 
     private void logout() {

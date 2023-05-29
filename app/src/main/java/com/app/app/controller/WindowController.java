@@ -37,11 +37,12 @@ public class WindowController {
         return primaryStage;
     }
 
-    public static  WindowController getInstance() {
-        if(INSTANCE == null) {
-            return new WindowController();
+    public static WindowController getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new WindowController();
         }
         return INSTANCE;
     }
+
 
 }

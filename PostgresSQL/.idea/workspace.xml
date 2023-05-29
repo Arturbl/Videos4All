@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3d2fc5f-d109-4131-833a-be7327e7d345" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/repo/UsersRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/repo/UsersRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/repo/VideoRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/repo/VideoRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Videos4All/src/main/java/com/Videos4All/Videos4All/controller/VideoController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +56,7 @@
       <workItem from="1685095049241" duration="125000" />
       <workItem from="1685113019300" duration="988000" />
       <workItem from="1685188317168" duration="4399000" />
+      <workItem from="1685369397497" duration="181000" />
     </task>
     <servers />
   </component>

@@ -32,7 +32,10 @@ public class VideoService {
     public Video upload(MultipartFile file) throws IOException {
         Video video = new Video();
         video.setName(
-                StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()))
+                StringUtils.cleanPath(Objects.requireNonNull(
+                        file.getOriginalFilename().replaceAll("\\s+","") // allow files with white spaces
+                    )
+                )
         );
         video.setContentType(file.getContentType());
         video.setSize(file.getSize());

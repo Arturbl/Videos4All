@@ -7,10 +7,9 @@ module com.app.app {
     requires com.fasterxml.jackson.databind;
     requires org.apache.httpcomponents.httpclient;
     requires org.apache.httpcomponents.httpcore;
-
     requires org.apache.httpcomponents.httpmime;
 
-    opens com.app.app.model to com.fasterxml.jackson.databind;
+    opens com.app.app.model to com.fasterxml.jackson.databind, com.google.gson;
 
     exports com.app.app;
     opens com.app.app to javafx.fxml;
