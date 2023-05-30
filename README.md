@@ -61,3 +61,7 @@ This documentation provides an overview of the endpoints available in the applic
     - docker-compose up -d
 
 
+### How to access database via terminal.
+1. Ensure container is running
+2. run: `docker exec -it Videos4All psql -U admin -d Videos4All`
+
