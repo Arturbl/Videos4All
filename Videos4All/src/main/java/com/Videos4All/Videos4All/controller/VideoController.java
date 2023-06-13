@@ -50,7 +50,6 @@ public class VideoController {
     }
 
 
-
     @GetMapping(value = "/video/find/{name}")
     public ResponseEntity<?> getVideo(@PathVariable String name) {
         Optional<Video> videoOpt = videoService.getVideo(name);
